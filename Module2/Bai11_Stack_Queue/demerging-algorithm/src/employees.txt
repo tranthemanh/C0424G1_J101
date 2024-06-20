@@ -1,0 +1,4 @@
+Alice, female, 1990-01-01
+Bob, male, 1991-02-02
+Carol, female, 1989-03-03
+Dave, male, 1992-04-04
