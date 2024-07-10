@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -153,4 +154,87 @@ public class PlayerManager {
             playerList.get(i).setId(i + 1);
         }
     }
+
+    public void displayWeeklyWagesDescending() {
+        if (playerList.isEmpty()) {
+            System.out.println("No players to display.");
+        } else {
+            sortWeeklyWagesDescending();
+            for (Player player : playerList) {
+                double weeklyWage = player.getDailyWage() * player.getDaysWorked() / 7.0;
+                System.out.println(player.getName() + ": $" + weeklyWage);
+            }
+        }
+    }
+
+    private void sortWeeklyWagesDescending() {
+        for (int i = 1; i < playerList.size(); i++) {
+            Player key = playerList.get(i);
+            double keyWeeklyWage = key.getDailyWage() * key.getDaysWorked() / 7.0;
+            int j = i - 1;
+            while (j >= 0 && (playerList.get(j).getDailyWage() * playerList.get(j).getDaysWorked() / 7.0) < keyWeeklyWage) {
+                playerList.set(j + 1, playerList.get(j));
+                j--;
+            }
+            playerList.set(j + 1, key);
+        }
+    }
+
+    public void displayExpiredContracts() {
+        List<Player> expiredPlayers = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+        for (Player player : playerList) {
+            if (player.getDayExpiration().isBefore(currentDate)) {
+                expiredPlayers.add(player);
+            }
+        }
+        if (expiredPlayers.isEmpty()) {
+            System.out.println("No players with expired contracts.");
+        } else {
+            System.out.println("Players with expired contracts:");
+            for (Player player : expiredPlayers) {
+                System.out.println(player);
+            }
+        }
+    }
+
+    public void searchByName() {
+        System.out.println("Enter player name to search: ");
+        String name = sc.nextLine();
+        List<Player> results = new ArrayList<>();
+        for (Player player : playerList) {
+            if (player.getName().toLowerCase().contains(name.toLowerCase())) {
+                results.add(player);
+            }
+        }
+        if (results.isEmpty()) {
+            System.out.println("No players found with name '" + name + "'.");
+        } else {
+            System.out.println("Players found with name '" + name + "':");
+            for (Player player : results) {
+                System.out.println(player);
+            }
+        }
+    }
+
+    public void searchByPosition() {
+        System.out.print("Enter player position to search: ");
+        String position = sc.nextLine();
+        List<Player> results = new ArrayList<>();
+        for (Player player : playerList) {
+            if (player.getPosition().equalsIgnoreCase(position)) {
+                results.add(player);
+            }
+        }
+        if (results.isEmpty()) {
+            System.out.println("No players found with position '" + position + "'.");
+        } else {
+            System.out.println("Players found with position '" + position + "':");
+            for (Player player : results) {
+                System.out.println(player);
+            }
+        }
+    }
+
+
 }

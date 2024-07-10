@@ -11,6 +11,10 @@ public class Manage {
             System.out.println("2. Update player");
             System.out.println("3. Delete player");
             System.out.println("4. Display player");
+            System.out.println("5. Displays the player weekly salary");
+            System.out.println("6. Display players with expired contracts");
+            System.out.println("7. Search player by name");
+            System.out.println("8. Search player by position");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
@@ -28,6 +32,18 @@ public class Manage {
                     break;
                 case 4:
                     playerManager.displayPlayer();
+                    break;
+                case 5:
+                    playerManager.displayWeeklyWagesDescending();
+                    break;
+                case 6:
+                    playerManager.displayExpiredContracts();
+                    break;
+                case 7:
+                    playerManager.searchByName();
+                    break;
+                case 8:
+                    playerManager.searchByPosition();
                     break;
                 case 0:
                     System.out.println("Exiting....");
