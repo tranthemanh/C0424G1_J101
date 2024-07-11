@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -77,7 +79,7 @@ public class Player extends Person {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "model.Player{" +
                 "Id=" + id + super.toString() +
                 ", Shirt Number=" + shirtNumber +
                 ", Position='" + position + '\'' +

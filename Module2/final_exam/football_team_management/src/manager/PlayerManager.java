@@ -1,3 +1,9 @@
+package manager;
+
+import model.Player;
+import utils.PlayerDao;
+import utils.Utils;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -27,8 +33,7 @@ public class PlayerManager {
         System.out.println("Enter player weight: ");
         double weight = Double.parseDouble(sc.nextLine());
 
-        System.out.println("Enter player shirt number: ");
-        int shirtNumber = Integer.parseInt(sc.nextLine());
+        int shirtNumber = checkAvailableShirtNumbers();
 
         System.out.println("Enter player position: ");
         String position = sc.nextLine();
@@ -41,6 +46,29 @@ public class PlayerManager {
         double wage = Double.parseDouble(sc.nextLine());
 
         return new Player(0, name, dob, height, weight, shirtNumber, position, daySign, dayExpiration, wage);
+    }
+
+    private int checkAvailableShirtNumbers() {
+        int shirtNumber;
+        while (true) {
+            System.out.println("Enter player shirt number: ");
+            shirtNumber = Integer.parseInt(sc.nextLine());
+            if (!checkShirtNumber(shirtNumber)) {
+                System.out.println("Shirt number already exists. Please enter a different shirt number.");
+            } else {
+                break;
+            }
+        }
+        return shirtNumber;
+    }
+
+    private boolean checkShirtNumber(int shirtNumber) {
+        for (Player player : playerList) {
+            if (player.getShirtNumber() == shirtNumber) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private LocalDate checkDayExpiration(LocalDate daySign) {
@@ -100,9 +128,9 @@ public class PlayerManager {
                 int index = playerList.indexOf(player);
                 playerList.set(index, updatedPlayer);
                 playerDao.write(playerList);
-                System.out.println("Player updated successfully.");
+                System.out.println("model.Player updated successfully.");
             } else {
-                System.out.println("Player not updated.");
+                System.out.println("model.Player not updated.");
             }
         } else {
             System.out.println("ID does not exist");
@@ -121,9 +149,9 @@ public class PlayerManager {
                 playerList.remove(player);
                 updatePlayerIds();
                 playerDao.write(playerList);
-                System.out.println("Player delete successfully.");
+                System.out.println("model.Player delete successfully.");
             } else {
-                System.out.println("Player not delete.");
+                System.out.println("model.Player not delete.");
             }
         } else {
             System.out.println("ID does not exist");
@@ -161,7 +189,7 @@ public class PlayerManager {
         } else {
             sortWeeklyWagesDescending();
             for (Player player : playerList) {
-                double weeklyWage = player.getDailyWage() * player.getDaysWorked() / 7.0;
+                double weeklyWage = player.getDailyWage() * 7.0;
                 System.out.println(player.getName() + ": $" + weeklyWage);
             }
         }
@@ -170,9 +198,9 @@ public class PlayerManager {
     private void sortWeeklyWagesDescending() {
         for (int i = 1; i < playerList.size(); i++) {
             Player key = playerList.get(i);
-            double keyWeeklyWage = key.getDailyWage() * key.getDaysWorked() / 7.0;
+            double keyWeeklyWage = key.getDailyWage() * 7.0;
             int j = i - 1;
-            while (j >= 0 && (playerList.get(j).getDailyWage() * playerList.get(j).getDaysWorked() / 7.0) < keyWeeklyWage) {
+            while (j >= 0 && (playerList.get(j).getDailyWage() * 7.0) < keyWeeklyWage) {
                 playerList.set(j + 1, playerList.get(j));
                 j--;
             }
