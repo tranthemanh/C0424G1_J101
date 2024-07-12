@@ -1,3 +1,10 @@
+package manager;
+
+import data.GenuinePhone;
+import data.HandbookPhone;
+import data.Phone;
+import utils.PhoneDao;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -74,9 +81,9 @@ public class PhoneManager {
                 phoneList.remove(phone);
                 updatePhoneIds();
                 phoneDao.writePhone(phoneList);
-                System.out.println("model.Phone delete successfully.");
+                System.out.println("Phone delete successfully.");
             } else {
-                System.out.println("model.Phone not delete.");
+                System.out.println("Phone not delete.");
             }
         } else {
             System.out.println("ID does not exist");

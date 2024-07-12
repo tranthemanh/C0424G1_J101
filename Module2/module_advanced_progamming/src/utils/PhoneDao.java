@@ -1,3 +1,9 @@
+package utils;
+
+import data.GenuinePhone;
+import data.HandbookPhone;
+import data.Phone;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +21,10 @@ public class PhoneDao {
                 bufferedWriter.write(phone.getI4());
                 bufferedWriter.newLine();
             }
+            bufferedWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                fileWriter.close();
-                bufferedWriter.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 
@@ -44,12 +45,12 @@ public class PhoneDao {
                 int quantity = Integer.parseInt(data[3]);
                 String producer = data[4];
                 if (data.length == 7) {
-                    int warrantyPeriod = Integer.parseInt(data[7]);
-                    String warrantyScope = data[8];
+                    int warrantyPeriod = Integer.parseInt(data[5]);
+                    String warrantyScope = data[6];
                     phoneList.add(new GenuinePhone(id, phoneName, price, quantity, producer, warrantyPeriod, warrantyScope));
                 } else if (data.length == 8) {
-                    String nation = data[7];
-                    String phoneStatus = data[8];
+                    String nation = data[5];
+                    String phoneStatus = data[6];
                     phoneList.add(new HandbookPhone(id, phoneName, price, quantity, producer, nation, phoneStatus));
                 }
             }

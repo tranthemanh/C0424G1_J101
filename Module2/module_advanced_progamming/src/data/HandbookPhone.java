@@ -1,4 +1,6 @@
-public class HandbookPhone extends Phone{
+package data;
+
+public class HandbookPhone extends Phone {
     private String nation;
     private String phoneStatus;
 
@@ -28,5 +30,10 @@ public class HandbookPhone extends Phone{
     @Override
     public String getI4() {
         return toString() + "," + nation + ","+ phoneStatus;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+","+nation+","+phoneStatus;
     }
 }

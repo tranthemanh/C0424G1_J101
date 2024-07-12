@@ -1,3 +1,4 @@
+package data;
 
 public class GenuinePhone extends Phone {
     private int warrantyPeriod;
@@ -20,5 +21,10 @@ public class GenuinePhone extends Phone {
     @Override
     public String getI4() {
         return toString() + ","+ warrantyPeriod + "," + warrantyScope;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ","+warrantyPeriod + "," + warrantyScope;
     }
 }

@@ -1,3 +1,5 @@
+package data;
+
 public abstract class Phone {
     private int id;
     private String phoneName;
