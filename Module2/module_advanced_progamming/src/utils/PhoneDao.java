@@ -28,7 +28,7 @@ public class PhoneDao {
         }
     }
 
-    public List<Phone> readPhone() {
+     public List<Phone> readPhone() {
         List<Phone> phoneList = new ArrayList<Phone>();
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -39,19 +39,25 @@ public class PhoneDao {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(",");
-                int id = Integer.parseInt(data[0]);
-                String phoneName = data[1];
-                double price = Double.parseDouble(data[2]);
-                int quantity = Integer.parseInt(data[3]);
-                String producer = data[4];
-                if (data.length == 7) {
-                    int warrantyPeriod = Integer.parseInt(data[5]);
-                    String warrantyScope = data[6];
-                    phoneList.add(new GenuinePhone(id, phoneName, price, quantity, producer, warrantyPeriod, warrantyScope));
-                } else if (data.length == 8) {
-                    String nation = data[5];
-                    String phoneStatus = data[6];
-                    phoneList.add(new HandbookPhone(id, phoneName, price, quantity, producer, nation, phoneStatus));
+                if (data.length >= 6) {
+                    try {
+                        int id = Integer.parseInt(data[0]);
+                        String phoneName = data[1];
+                        double price = Double.parseDouble(data[2]);
+                        int quantity = Integer.parseInt(data[3]);
+                        String producer = data[4];
+                        try {
+                            int warrantyPeriod = Integer.parseInt(data[5]);
+                            String warrantyScope = data[6];
+                            phoneList.add(new GenuinePhone(id, phoneName, price, quantity, producer, warrantyPeriod, warrantyScope));
+                        } catch (NumberFormatException e) {
+                            String nation = data[5];
+                            String phoneStatus = data[6];
+                            phoneList.add(new HandbookPhone(id, phoneName, price, quantity, producer, nation, phoneStatus));
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Lỗi định dạng số: " + e.getMessage());
+                    }
                 }
             }
         } catch (IOException e) {

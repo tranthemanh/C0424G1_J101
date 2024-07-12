@@ -4,8 +4,8 @@ public class GenuinePhone extends Phone {
     private int warrantyPeriod;
     private String warrantyScope;
 
-    public GenuinePhone(int id, String phoneName, double price, int quantity, String producer, int warrantyPeriod, String warrantyScope) {
-        super(id, phoneName, price, quantity, producer);
+    public GenuinePhone(int id, String name, double price, int quantity, String producer, int warrantyPeriod, String warrantyScope) {
+        super(id, name, price, quantity, producer);
         this.warrantyPeriod = warrantyPeriod;
         this.warrantyScope = warrantyScope;
     }
@@ -20,7 +20,7 @@ public class GenuinePhone extends Phone {
 
     @Override
     public String getI4() {
-        return toString() + ","+ warrantyPeriod + "," + warrantyScope;
+        return toString();
     }
 
     @Override

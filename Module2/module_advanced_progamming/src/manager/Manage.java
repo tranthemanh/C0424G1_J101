@@ -3,8 +3,13 @@ package manager;
 import java.util.Scanner;
 
 public class Manage {
-    Scanner sc = new Scanner(System.in);
-    PhoneManager phoneManager = new PhoneManager();
+    Scanner sc;
+    PhoneManager phoneManager;
+
+    public Manage(){
+        sc = new Scanner(System.in);
+        phoneManager = new PhoneManager();
+    }
 
     public void manager() {
         while (true) {

@@ -2,14 +2,14 @@ package data;
 
 public abstract class Phone {
     private int id;
-    private String phoneName;
+    private String name;
     private double price;
     private int quantity;
     private String producer;
 
-    public Phone(int id, String phoneName, double price, int quantity, String producer) {
+    public Phone(int id, String name, double price, int quantity, String producer) {
         this.id = id;
-        this.phoneName = phoneName;
+        this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.producer = producer;
@@ -23,12 +23,12 @@ public abstract class Phone {
         this.id = id;
     }
 
-    public String getPhoneName() {
-        return phoneName;
+    public String getName() {
+        return name;
     }
 
-    public void setPhoneName(String phoneName) {
-        this.phoneName = phoneName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
@@ -59,6 +59,6 @@ public abstract class Phone {
 
     @Override
     public String toString() {
-        return id + "," + phoneName + "," + price + "," + quantity + "," + producer;
+        return id + "," + name + "," + price + "," + quantity + "," + producer;
     }
 }

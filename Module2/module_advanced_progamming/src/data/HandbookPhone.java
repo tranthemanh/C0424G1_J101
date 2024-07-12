@@ -4,8 +4,8 @@ public class HandbookPhone extends Phone {
     private String nation;
     private String phoneStatus;
 
-    public HandbookPhone(int id, String phoneName, double price, int quantity, String producer, String nation, String phoneStatus) {
-        super(id, phoneName, price, quantity, producer);
+    public HandbookPhone(int id, String name, double price, int quantity, String producer, String nation, String phoneStatus) {
+        super(id, name, price, quantity, producer);
         this.nation = nation;
         this.phoneStatus = phoneStatus;
     }
@@ -29,7 +29,7 @@ public class HandbookPhone extends Phone {
 
     @Override
     public String getI4() {
-        return toString() + "," + nation + ","+ phoneStatus;
+        return toString();
     }
 
     @Override
