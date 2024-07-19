@@ -9,12 +9,19 @@ public class FizzBuzzTranslate {
         boolean contains3 = String.valueOf(number).contains("3");
         boolean contains5 = String.valueOf(number).contains("5");
 
-
         if (divisibleBy3 && divisibleBy5) {
             return "FizzBuzz";
-        }else if (divisibleBy3 || contains3) {
+        }
+        if (divisibleBy3) {
             return "Fizz";
-        }else if (divisibleBy5 || contains5) {
+        }
+        if (divisibleBy5) {
+            return "Buzz";
+        }
+        if (contains3) {
+            return "Fizz";
+        }
+        if (contains5) {
             return "Buzz";
         }
         return numberToWords(number);
@@ -27,16 +34,17 @@ public class FizzBuzzTranslate {
 
         if (number < 10) {
             return units[number];
-        }else if (number < 20) {
-            return teens[number - 10];
-        }else {
-            int unit = number % 10;
-            int ten = number / 10;
-
-            if (unit == 0) {
-                return tens[ten];
-            }
-            return tens[ten] + " " + units[unit];
         }
+        if (number < 20) {
+            return teens[number - 10];
+        }
+
+        int unit = number % 10;
+        int ten = number / 10;
+
+        if (unit == 0) {
+            return tens[ten];
+        }
+        return tens[ten] + " " + units[unit];
     }
 }

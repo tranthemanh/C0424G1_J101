@@ -34,6 +34,7 @@ public class App {
                     break;
                 case 6:
                     studentManager.exportStudents();
+                    break;
                 case 7:
                     System.exit(0);
             }

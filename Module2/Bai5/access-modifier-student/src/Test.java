@@ -1,12 +1,10 @@
 public class Test {
-    public static void main(String[] args) {
-        Student s = new Student();
-        System.out.println(s.getName());
-        System.out.println(s.getClasses());
+    public int X = 2;
 
-        s.setName("Manh");
-        s.setClasses("C02");
-        System.out.println(s.getName());
-        System.out.println(s.getClasses());
+    public static void main(String[] args) {
+        Test o1 = new Test();
+        Test o2 = new Test();
+        o2.X = 5;
+        System.out.printf("x=%d, y=%d, z=%d", o1.X, o2.X);
     }
 }

@@ -11,7 +11,6 @@ public class CopyFileText {
             if (!file.exists()) {
                 throw new FileNotFoundException("File khong ton tai.");
             }
-
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = "";
             while ((line = br.readLine()) != null) {
